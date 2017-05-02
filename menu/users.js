@@ -130,22 +130,25 @@ $(document).ready( function ()
       });
     });
     $(document).on("click",".btnedit",function(){
-      var size_id=$(this).attr("size_id");
+      var user_id=$(this).attr("user_id");
       var value = {
-        size_id: size_id
+        user_id: user_id
       };
       $.ajax(
       {
-        url : "getSize.php",
+        url : "getUser.php",
         type: "POST",
         data : value,
         success: function(data, textStatus, jqXHR)
         {
           var data = jQuery.parseJSON(data);
           $("#crudmethod").val("E");
-          $("#txtid").val(data.size_id);
-          $("#txtname").val(data.name);
-          $("#categoriaEdit").val(data.categoryIDFK);
+          $("#txtid").val(data.user_id);
+          $("#txtname").val(data.Full_Name);
+          $("#email").val(data.Email);
+          $("#phone").val(data.Phone);
+          $("#status").val(data.isVerified);
+          $("#role").val(data.userRole);
           $("#modalSize").modal('show');
           $("#txtname").focus();
         },

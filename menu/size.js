@@ -142,7 +142,7 @@ $(document).ready( function ()
           $("#crudmethod").val("E");
           $("#txtid").val(data.size_id);
           $("#txtname").val(data.name);
-          $("#categoriaEdit").val(data.categoryIDFK);
+          $("#categoryIdFK").val(data.categoryIDFK);
           $("#modalSize").modal('show');
           $("#txtname").focus();
         },

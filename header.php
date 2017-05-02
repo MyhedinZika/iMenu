@@ -63,7 +63,7 @@ $userInfo = $user->getUser($userId);
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="menu/products.php">Test1</a></li>
+                <li><a href="menu/users.php">Users</a></li>
          <li class="divider"></li>
                 <li><a href="menu/categories.php">Test2</a></li>
          <li class="divider"></li>

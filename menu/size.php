@@ -63,8 +63,8 @@
                     <thead>
                       <tr class="tableheader"> 
                         <th style="width:80px">#</th>
-                        <th style="width:300px">Name</th>
-                        <th style="width:300px">Category</th>
+                        <th style="width:200px">Name</th>
+                        <th style="width:700px">Category</th>
                       </tr>             
                     </thead>
                     <tbody>
@@ -99,12 +99,11 @@
                         <div class="form-group">
                             <label class="col-sm-3  control-label">Category</label>
                           <div class="col-sm-9">
-                           <input type="hidden" id="categoriaEdit" name="CategoriaEdit" value="0">
+                          
                               <select class="form-control" id="categoryIdFK" >
                              
                             <?php
-                                $test = $_REQUEST['CategoriaEdit'];
-                               echo $test;
+                      
                                 $user = new SESSION();
                                 $categories = $user->getCategories();
                                 foreach ($categories as $key => $value) {
