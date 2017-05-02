@@ -19,13 +19,21 @@ $role = $_POST['role'];
 //echo ("test");
 
 if($crud == 'E'){
+	$userCheck = $user->checkIfUserExists($name, $email, $phone);
+	if($userCheck == false){
 	$user->editUser($userId,$name,$email, $phone, $role);
+	
 	if(mysql_error()){
 		$result['error']=mysql_error();
 		$result['result']=0;
 	}else{
 		$result['error']='';
 		$result['result']=1;
+	}
+}
+else{
+		$result['error']='';
+		$result['result']=2;
 	}
 }else{
 

@@ -290,6 +290,28 @@ class Session
       return $e->getMessage();
     }
   }
+
+   function checkIfIngredientExists($name)
+  {
+    global $database;
+    $sql = "SELECT * FROM ingredient WHERE name = :name ";
+    try {
+
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindParam('name', $name);
+      $stmt->execute();
+
+      if ($stmt->rowCount() > 0) {
+        return true;
+      } else {
+        return false;
+      }
+
+
+    } catch (Exception $e) {
+      return $e->getMessage();
+    }
+  }
 /********************************************************************************************************************
 PJESA PER KATEGORI
 *****************************************************************************************************************/
@@ -492,6 +514,45 @@ PJESA PER KATEGORI
     }
   }
 
+  function checkIfUserExists($fullName,$email, $phone)
+  {
+    global $database;
+    $sql = "SELECT * FROM users WHERE Full_Name = :name AND Email = :email AND Phone = :phone ";
+    try {
+
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindParam('name', $fullName);
+      $stmt->bindParam('email', $email);
+       $stmt->bindParam('phone', $phone);
+       
+      $stmt->execute();
+
+      if ($stmt->rowCount() > 0) {
+        return true;
+      } else {
+        return false;
+      }
+
+
+    } catch (Exception $e) {
+      return $e->getMessage();
+    }
+  }
+  public function addProduct($name,$photo,$category){
+    global $database;
+    try {
+      $sql = "INSERT into product(name,photo,categoryIdFK) VALUES(:name,:photo,:categoryIdFK)";
+      $stmt = $this->conn->prepare($sql);
+
+      $stmt->bindParam(':name', $name);
+      $stmt->bindParam(':photo', $photo);
+      $stmt->bindParam(':categoryIdFK', $category);
+
+      $stmt->execute();
+    } catch (Exception $e) {
+      return $e->getMessage();
+    }
+  }
    function deleteProduct($productId)
   {
     global $database;

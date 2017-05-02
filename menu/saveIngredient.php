@@ -11,19 +11,29 @@ $name = $_POST['name'];
 $crud=$_POST['crud'];
 
 
+$checkIngredient = $user->checkIfIngredientExists($name);
+
 if($crud=='N'){
 	//var_dump($_POST['name']);
-	$user->addIngredient($name);
-	if(mysql_error()){
-		$result['error']=mysql_error();
-		$result['result']=0;
-	}else{
-		$result['error']='';
-		$result['result']=1;
-	}
 	
 
+	if($checkIngredient == false){
+		$user->addIngredient($name);
+		if(mysql_error()){
+			$result['error']=mysql_error();
+			$result['result']=0;
+		}else{
+			$result['error']='';
+			$result['result']=1;
+		}
+	}
+	else{
+		$result['error']='';
+		$result['result']=2;
+	}
+
 }else if($crud == 'E'){
+	if($checkIngredient == false){
 	$user->editIngredient($ingredientId,$name);
 	if(mysql_error()){
 		$result['error']=mysql_error();
@@ -31,6 +41,11 @@ if($crud=='N'){
 	}else{
 		$result['error']='';
 		$result['result']=1;
+	}
+	}
+	else{
+		$result['error']='';
+		$result['result']=2;
 	}
 }else{
 

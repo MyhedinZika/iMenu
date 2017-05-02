@@ -72,17 +72,21 @@ $(document).ready( function ()
         });
     });
     $(document).on("click","#btnsave",function(){
-      var ingredient_id = $("#txtid").val();
-      var name = $("#txtname").val();
+      var product_id = $("#txtid").val();
+      var pname = $("#txtname").val();
+      var newimage = $("#newimage").val();
+      var categoryIDFK = $("#categoryIdFK").val();
       var crud=$("#crudmethod").val();
-      if(name == '' || name == null ){
+      if(pname == '' || pname == null ){
         swal("Warning","Please fill product name","warning");
         $("#txtname").focus();
         return;
       }
       var value = {
-        ingredient_id: ingredient_id,
-        name: name,
+        product_id: product_id,
+        pname: pname,
+        image : newimage,
+        categoryIDFK : categoryIDFK,
         crud: crud
       };
       $.ajax(
@@ -90,6 +94,7 @@ $(document).ready( function ()
         url : "saveProduct.php",
         type: "POST",
         data : value,
+
         success: function(data, textStatus, jqXHR)
         {
           var data = jQuery.parseJSON(data);
@@ -126,9 +131,9 @@ $(document).ready( function ()
       });
     });
     $(document).on("click",".btnedit",function(){
-      var ingredient_id=$(this).attr("ingredient_id");
+      var product_id=$(this).attr("product_id");
       var value = {
-        ingredient_id: ingredient_id
+        product_id: product_id
       };
       $.ajax(
       {
@@ -139,7 +144,7 @@ $(document).ready( function ()
         {
           var data = jQuery.parseJSON(data);
           $("#crudmethod").val("E");
-          $("#txtid").val(data.ingredient_id);
+          $("#txtid").val(data.product_id);
           $("#txtname").val(data.i_name);
           $("#modalProducts").modal('show');
           $("#txtname").focus();

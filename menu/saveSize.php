@@ -15,8 +15,9 @@ $categoryIDFK = $_POST['categoryIDFK'];
 
 //echo ("test");
 
+$checkSize = $user->checkIfSizeExists($name,$categoryIDFK);
 if($crud=='N'){
-	$checkSize = $user->checkIfSizeExists($name,$categoryIDFK);
+	
 //	echo $checkSize;
 	if($checkSize == false){
 	$user->addSize($name,$categoryIDFK);
@@ -38,6 +39,7 @@ if($crud=='N'){
 	
 
 }else if($crud == 'E'){
+	if($checkSize == false){
 	$user->editSize($sizeId,$name,$categoryIDFK);
 	if(mysql_error()){
 		$result['error']=mysql_error();
@@ -45,6 +47,11 @@ if($crud=='N'){
 	}else{
 		$result['error']='';
 		$result['result']=1;
+	}
+}
+else{
+		$result['error']='';
+		$result['result']=2;
 	}
 }else{
 

@@ -97,30 +97,32 @@
                             </div>
                         </div>
                         <div class="form-group"> 
+                       
                           <label class="col-sm-3  control-label">Photo</label>
                           <div class="col-sm-9">
-                              <input type="file" id="new-image" name="new-image"/>
+                              <input type="file" class="form-control" id="newimage" name="newimage"/>
                             </div>
+                       
                         </div>
-                        <div class="form-group">
+                      <!--   <div class="form-group">
                             <label class="col-sm-3  control-label">Ingredients</label>
                           <div class="col-sm-9">
-                    <?php
-          $ingredients = $user->getIngredients();
+                   
+          // $ingredients = $user->getIngredients();
 
-          echo '<select class="form-control" name="ingredients[]" id="ingredients" multiple>';
+          //echo '<select class="form-control" name="ingredients[]" id="ingredients" multiple>';
 
-          foreach ($ingredients as $key => $value) {
-            echo '<option value="' . $value['ingredientId'] . '">' . $value['i_name'] . '</option>';
+         // foreach ($ingredients as $key => $value) {
+           // echo '<option value="' . $value['ingredientId'] . '">' . $value['i_name'] . '</option>';
           }
-          echo '</select>';
+         // echo '</select>';
 
-          ?>
+          
           <span class="form-help">Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</span>  
 
                           </div>
                         </div>
-
+ -->
                        <div class="form-group">
                             <label class="col-sm-3  control-label">Category</label>
                           <div class="col-sm-9">
