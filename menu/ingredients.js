@@ -58,7 +58,7 @@ $(document).ready( function ()
                 var table = $('#table_ingredients').DataTable(); 
                 table.ajax.reload( null, false );
               }else{
-                swal("Error","Can't delete customer data, error : "+data.error,"error");
+                swal("Error","Can't delete ingredient data, error : "+data.error,"error");
               }
 
             },
@@ -74,7 +74,7 @@ $(document).ready( function ()
       var name = $("#txtname").val();
       var crud=$("#crudmethod").val();
       if(name == '' || name == null ){
-        swal("Warning","Please fill customer name","warning");
+        swal("Warning","Please fill ingredient name","warning");
         $("#txtname").focus();
         return;
       }
@@ -102,7 +102,7 @@ $(document).ready( function ()
               $("#txtid").val("0");
               $("#txtname").focus();
             }else{
-              swal("Error","Can't save customer data, error : "+data.error,"error");
+              swal("Error","Can't save ingredient data, error : "+data.error,"error");
             }
           }else if(data.crud == 'E'){
             if(data.result == 1){
@@ -111,7 +111,7 @@ $(document).ready( function ()
               table.ajax.reload( null, false );
               $("#txtname").focus();
             }else{
-             swal("Error","Can't update customer data, error : "+data.error,"error");
+             swal("Error","Can't update ingredient data, error : "+data.error,"error");
             }
           }else{
             swal("Error","invalid order","error");

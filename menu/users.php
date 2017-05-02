@@ -59,7 +59,7 @@
           </div>
         </div>
         <div class="box-body">
-         <table id="table_size" class="table table-striped table-bordered table-hover">
+         <table id="table_users" class="table table-striped table-bordered table-hover">
                     <thead>
                       <tr class="tableheader"> 
                         <th style="width:80px">#</th>
@@ -81,7 +81,7 @@
         <!-- /.box-footer-->
       </div>
       <!-- /.box -->
-   <div id="modalSize" class="modal">
+   <div id="modalUsers" class="modal">
                 <div class="modal-dialog modal-md">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -117,7 +117,6 @@
                           <label class="col-sm-3  control-label">Status</label>
 
                           <div class="col-sm-9">
-                            <input type="hidden" name="statusValue" id="statusValue" value="0">
                               <select  class="form-control" name="status" id="status" disabled>
                                 <option value="0" >Unverified</option>
                                 <option value="1" >Verified</option>

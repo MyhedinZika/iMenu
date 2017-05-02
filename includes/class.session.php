@@ -475,6 +475,48 @@ PJESA PER KATEGORI
     }
   }
 
+  function editUser($userId,$fullName, $email, $phone, $role){
+    global $database;
+     $sql = "UPDATE users SET Full_Name = :name, Email = :email, Phone = :phone, userRole = :userRole WHERE userId = :userId";
+
+    try {
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindParam('userId', $userId);
+      $stmt->bindParam('name', $fullName);
+      $stmt->bindParam('email', $email);
+      $stmt->bindParam('phone', $phone);
+      $stmt->bindParam('userRole', $role);
+      $stmt->execute();
+    } catch (Exception $e) {
+      return $e->getMessage();
+    }
+  }
+
+   function deleteProduct($productId)
+  {
+    global $database;
+    $sql = "DELETE from product WHERE productId = :product_id";
+    try {
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindParam('product_id', $productId);
+      $stmt->execute();
+    } catch (Exception $e) {
+      return $e->getMessage();
+    }
+  }
+
+  function getIngredients()
+  {
+    global $database;
+    $sql = "SELECT * FROM ingredient";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    $ingredientsList = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $ingredientsList;
+
+  }
+
 
   
 

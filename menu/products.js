@@ -1,6 +1,6 @@
 $(document).ready( function () 
     {
-      $('#table_categories').DataTable({
+      $('#table_products').DataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,
@@ -10,12 +10,14 @@ $(document).ready( function ()
         "autoWidth": false,
         "pageLength": 10,
         "ajax": {
-          "url": "dataCategories.php",
+          "url": "dataProducts.php",
           "type": "POST"
         },
         "columns": [
         { "data": "urutan" },
         { "data": "name" },
+        { "data": "photo"},
+        { "data": "categoryIdFK"},
         { "data": "button" },
         ]
       });
@@ -23,18 +25,18 @@ $(document).ready( function ()
 
     });
     $(document).on("click","#btnadd",function(){
-        $("#modalCategories").modal("show");
+        $("#modalProducts").modal("show");
         $("#txtname").focus();
         $("#txtname").val("");
         $("#crudmethod").val("N");
         $("#txtid").val("0");
     });
     $(document).on( "click",".btnhapus", function() {
-      var category_id = $(this).attr("category_id");
-      var name = $(this).attr("category_name");
+      var product_id = $(this).attr("product_id");
+      var name = $(this).attr("name_cust");
       swal({   
         title: "You are about to delete.",   
-        text: "Are you sure you want to delete the category: "+name+" ?",   
+        text: "Are you sure you want to delete the ingredient: "+name+" ?",   
         type: "warning",   
         showCancelButton: true,   
         confirmButtonColor: "#3085d6", 
@@ -43,11 +45,11 @@ $(document).ready( function ()
         closeOnConfirm: true }, 
         function(){   
           var value = {
-            category_id: category_id
+            product_id: product_id
           };
           $.ajax(
           {
-            url : "deleteCategory.php",
+            url : "deleteProduct.php",
             type: "POST",
             data : value,
             success: function(data, textStatus, jqXHR)
@@ -55,10 +57,10 @@ $(document).ready( function ()
               var data = jQuery.parseJSON(data);
               if(data.result ==1){
                 $.notify('Successfully deleted ingredient');
-                var table = $('#table_categories').DataTable(); 
+                var table = $('#table_products').DataTable(); 
                 table.ajax.reload( null, false );
               }else{
-                swal("Error","Can't delete category, error : "+data.error,"error");
+                swal("Error","Can't delete product data, error : "+data.error,"error");
               }
 
             },
@@ -70,22 +72,22 @@ $(document).ready( function ()
         });
     });
     $(document).on("click","#btnsave",function(){
-      var category_id = $("#txtid").val();
+      var ingredient_id = $("#txtid").val();
       var name = $("#txtname").val();
       var crud=$("#crudmethod").val();
       if(name == '' || name == null ){
-        swal("Warning","Please fill category name","warning");
+        swal("Warning","Please fill product name","warning");
         $("#txtname").focus();
         return;
       }
       var value = {
-        category_id: category_id,
+        ingredient_id: ingredient_id,
         name: name,
         crud: crud
       };
       $.ajax(
       {
-        url : "saveCategory.php",
+        url : "saveProduct.php",
         type: "POST",
         data : value,
         success: function(data, textStatus, jqXHR)
@@ -94,28 +96,24 @@ $(document).ready( function ()
           if(data.crud == 'N'){
             if(data.result == 1){
               $.notify('Successfully inserted data');
-              var table = $('#table_categories').DataTable(); 
+              var table = $('#table_products').DataTable(); 
               table.ajax.reload( null, false );
               $("#txtname").focus();
               $("#txtname").val("");
               $("#crudmethod").val("N");
               $("#txtid").val("0");
               $("#txtname").focus();
-            }else if(data.result == 2){
-                swal("Error","This category already exists, please choose another category name");
-            }
-
-            else{
-              swal("Error","Can't save category data, error : "+data.error,"error");
+            }else{
+              swal("Error","Can't save product data, error : "+data.error,"error");
             }
           }else if(data.crud == 'E'){
             if(data.result == 1){
               $.notify('Successfully updated data');
-              var table = $('#table_categories').DataTable(); 
+              var table = $('#table_products').DataTable(); 
               table.ajax.reload( null, false );
               $("#txtname").focus();
             }else{
-             swal("Error","Can't update category data, error : "+data.error,"error");
+             swal("Error","Can't update product data, error : "+data.error,"error");
             }
           }else{
             swal("Error","invalid order","error");
@@ -128,22 +126,22 @@ $(document).ready( function ()
       });
     });
     $(document).on("click",".btnedit",function(){
-      var category_id=$(this).attr("category_id");
+      var ingredient_id=$(this).attr("ingredient_id");
       var value = {
-        category_id: category_id
+        ingredient_id: ingredient_id
       };
       $.ajax(
       {
-        url : "getCategory.php",
+        url : "getProduct.php",
         type: "POST",
         data : value,
         success: function(data, textStatus, jqXHR)
         {
           var data = jQuery.parseJSON(data);
           $("#crudmethod").val("E");
-          $("#txtid").val(data.category_id);
-          $("#txtname").val(data.name);
-          $("#modalCategories").modal('show');
+          $("#txtid").val(data.ingredient_id);
+          $("#txtname").val(data.i_name);
+          $("#modalProducts").modal('show');
           $("#txtname").focus();
         },
         error: function(jqXHR, textStatus, errorThrown)

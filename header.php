@@ -156,7 +156,7 @@ $userInfo = $user->getUser($userId);
                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                   </div>
                   <div class="pull-right">
-                    <a href="../pages/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                    <a href="pages/logout.php" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>

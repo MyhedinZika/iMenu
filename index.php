@@ -1,3 +1,20 @@
+<?php
+
+require_once 'includes/class.session.php';
+
+$user = new SESSION();
+
+if ($user->is_logged_in())
+{
+$userId = $_SESSION['userSession'];
+$userInfo = $user->getUser($userId);
+ 
+  if ($userInfo['userRole'] > 0)
+  {
+ 
+
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -58,6 +75,23 @@
     </div>
     <!-- /.container -->
   </footer>
+
+   <?php }
+  else {
+    $user->redirect('pages/login.php');
+  }
+  }
+  else {
+    //ob_end();
+    $user->redirect('pages/login.php');
+   
+
+    //header("Location: ../../index.php" );
+    //exit();
+
+
+  }
+  ?>
 </div>
 <!-- ./wrapper -->
 

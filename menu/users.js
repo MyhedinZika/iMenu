@@ -1,6 +1,6 @@
 $(document).ready( function () 
     {
-      $('#table_size').DataTable({
+      $('#table_users').DataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,
@@ -27,7 +27,7 @@ $(document).ready( function ()
 
     });
     $(document).on("click","#btnadd",function(){
-        $("#modalSize").modal("show");
+        $("#modalUsers").modal("show");
         $("#txtname").focus();
         $("#txtname").val("");
         $("#crudmethod").val("N");
@@ -35,10 +35,10 @@ $(document).ready( function ()
     });
     $(document).on( "click",".btnhapus", function() {
       var user_id = $(this).attr("user_id");
-      var name = $(this).attr("size_name");
+      var name = $(this).attr("user_fullname");
       swal({   
         title: "You are about to delete.",   
-        text: "Are you sure you want to delete the size: "+name+" ?",   
+        text: "Are you sure you want to delete the user: "+name+" ?",   
         type: "warning",   
         showCancelButton: true,   
         confirmButtonColor: "#3085d6", 
@@ -59,7 +59,7 @@ $(document).ready( function ()
               var data = jQuery.parseJSON(data);
               if(data.result ==1){
                 $.notify('Successfully deleted size');
-                var table = $('#table_size').DataTable(); 
+                var table = $('#table_users').DataTable(); 
                 table.ajax.reload( null, false );
               }else{
                 swal("Error","Can't delete customer data, error : "+data.error,"error");
@@ -74,9 +74,11 @@ $(document).ready( function ()
         });
     });
     $(document).on("click","#btnsave",function(){
-      var size_id = $("#txtid").val();
+      var user_id = $("#txtid").val();
       var name = $("#txtname").val();
-      var category = $("#categoryIdFK").val();
+      var email = $("#email").val();
+      var phone = $("#phone").val();
+      var role = $("#role").val();
       var crud=$("#crudmethod").val();
       if(name == '' || name == null ){
         swal("Warning","Please fill customer name","warning");
@@ -84,14 +86,16 @@ $(document).ready( function ()
         return;
       }
       var value = {
-        size_id: size_id,
+        user_id: user_id,
         name: name,
-        categoryIDFK : category,
+        email : email,
+        phone : phone,
+        role : role,
         crud: crud
       };
       $.ajax(
       {
-        url : "saveSize.php",
+        url : "saveUser.php",
         type: "POST",
         data : value,
         success: function(data, textStatus, jqXHR)
@@ -100,7 +104,7 @@ $(document).ready( function ()
           if(data.crud == 'N'){
             if(data.result == 1){
               $.notify('Successfully inserted data');
-              var table = $('#table_size').DataTable(); 
+              var table = $('#table_users').DataTable(); 
               table.ajax.reload( null, false );
               $("#txtname").focus();
               $("#txtname").val("");
@@ -113,7 +117,8 @@ $(document).ready( function ()
           }else if(data.crud == 'E'){
             if(data.result == 1){
               $.notify('Successfully updated data');
-              var table = $('#table_size').DataTable(); 
+              // swal("Successfully updated data");
+              var table = $('#table_users').DataTable(); 
               table.ajax.reload( null, false );
               $("#txtname").focus();
             }else{
@@ -149,7 +154,7 @@ $(document).ready( function ()
           $("#phone").val(data.Phone);
           $("#status").val(data.isVerified);
           $("#role").val(data.userRole);
-          $("#modalSize").modal('show');
+          $("#modalUsers").modal('show');
           $("#txtname").focus();
         },
         error: function(jqXHR, textStatus, errorThrown)

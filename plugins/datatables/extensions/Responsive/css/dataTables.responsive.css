@@ -104,3 +104,21 @@ table.dataTable > tbody > tr.child span.dtr-title {
   min-width: 75px;
   font-weight: bold;
 }
+
+#table_users_filter{
+  margin-left: 317px;
+}
+#table_categories_filter{
+  margin-left: 317px;
+}
+#table_ingredients_filter{
+  margin-left: 317px;
+}
+#table_size_filter{
+  margin-left: 317px;
+}
+#table_products_filter{
+  margin-left: 317px;
+}
+
+

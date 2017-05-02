@@ -12,7 +12,7 @@ if (isset($_POST['signIn'])) {
       $userId = $_SESSION['userSession'];
       $user =$user_login->getUser($userId);
 
-      if($user['userRole'] == 0) {
+      if($user['userRole'] > 0) {
       $user_login->redirect('../index.php');
      } 
   }
