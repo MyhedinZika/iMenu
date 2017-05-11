@@ -5,8 +5,7 @@ include('../includes/class.session.php');
 $user = new SESSION();
 
 
-
-$userId=$_POST['user_id'];
+$userId = $_POST['user_id'];
 $user = $user->getUser($userId);
 
 

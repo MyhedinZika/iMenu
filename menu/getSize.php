@@ -5,8 +5,7 @@ include('../includes/class.session.php');
 $user = new SESSION();
 
 
-
-$sizeId=$_POST['size_id'];
+$sizeId = $_POST['size_id'];
 $size = $user->getSize($sizeId);
 
 $array = array();

@@ -5,8 +5,7 @@ include('../includes/class.session.php');
 $user = new SESSION();
 
 
-
-$ingredient_id=$_POST['ingredient_id'];
+$ingredient_id = $_POST['ingredient_id'];
 $ingredient = $user->getIngredient($ingredient_id);
 
 $array = array();

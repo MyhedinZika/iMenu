@@ -5,8 +5,7 @@ include('../includes/class.session.php');
 $user = new SESSION();
 
 
-
-$categoryId=$_POST['category_id'];
+$categoryId = $_POST['category_id'];
 $category = $user->getCategory($categoryId);
 
 $array = array();
