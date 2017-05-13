@@ -83,7 +83,7 @@ if ($userInfo['userRole'] > 0)
 
   <?php }
   else {
-    $user->redirect('pages/login.php');
+    $user->redirect('client/index.php');
   }
   }
   else {

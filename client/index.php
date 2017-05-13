@@ -51,7 +51,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                
                         <ul class="nav navbar-nav main-nav  clear navbar-right ">
-                            <li><a class="color_animation" href="#pricing">Pricing</a></li>
+                            <li><a class="color_animation" href="#opa">Menu</a></li>
                             <li><a class="color_animation" href="#reservation">Reservation</a></li>
                             <li><a class="color_animation" href="#contact">Contact</a></li>
                         </ul>
@@ -73,7 +73,7 @@
 
          <section id ="pricing" class="description_content">
              <div class="pricing background_content">
-                <h1><a href="#opa">Order Here</a></br><span class="error_number">&dArr;</span></h1>
+                <h1><a class="hehe" href="#opa">Order Here</a></br><span class="error_number">&dArr;</span></h1>
               
 
              </div>
@@ -90,32 +90,37 @@
                             ?>
                             </ul><!-- @end #filter-list -->    
                             <ul id="portfolio">
-
+                            <div class="row">
                             <?php 
                                   foreach ($categories as $key => $value):
                                    
                                   
                                      $products = $user->getProductsByCategory($value['categoryId']);
-
-                                     foreach ($products as $key => $value){
-                                        echo '<div class="col-md-3">';
-                                        echo ' <div class="media-left">';
-                                        echo '<li class="item '.$value['categoryIdFK'].'"><img src="../menu/product_images/'.$value['photo'].'" alt="Food">'.$value['name'].'</li>';
-                                        echo '</div>';
-                                        echo '</div>';
+                                    // $productsCount = $products->rowCount();
+                                     //echo $productsCount;
+                                     foreach ($products as $key => $value){ ?>
+                                        <li class="item <?= $value['categoryIdFK'] ?>">
+                                         <div class="media">
+                                          <div class="col-md-3">
+                                            <div class="media-left">
+                                             <img src="../menu/product_images/<?=$value['photo']?>" alt="Food"><?= $value['name'] ?></img>
+                                            </div>
+                                          </div>
+                                         </div>
+                                        </li>
+                            <?php
                                      }
                                  
                                      
                                  endforeach; //category
 
-                            ?>
-                                
-                            
+                            ?>                       
                                 <!-- <li class="item desert breakfast"><img src="images/food_icon08.jpg" alt="Food" >
                                     <h2 class="white">$38</h2>
                                 </li> -->
                             </ul><!-- @end #portfolio -->
                         </div><!-- @end #w -->
+                        </div><!-- @end #row -->
                     </div>
                 </div> 
                 </div>

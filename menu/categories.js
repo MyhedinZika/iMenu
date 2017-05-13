@@ -71,7 +71,7 @@ $(document).on("click", "#btnsave", function () {
     var category_id = $("#txtid").val();
     var name = $("#txtname").val();
     var crud = $("#crudmethod").val();
-    var regex = /^[a-zA-Z ]*$/;
+     var regex = /^[a-zA-Z -]*$/;
     if (name == '' || name == null) {
         swal("Warning", "Shkruani emertimin e kategorise", "warning");
         $("#txtname").focus();

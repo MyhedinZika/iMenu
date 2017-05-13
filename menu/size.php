@@ -159,9 +159,11 @@
 </div>
 <!-- ./wrapper -->
 <script>
-    $('#multi-select').dropdown();
 
     $('#categoryIdFK').dropdown();
+
+    // /$(".ui.dropdown").dropdown("set selected", "A");
+
 </script>
 
 <!-- jQuery 2.1.4 -->

@@ -220,6 +220,14 @@ class Session
     return $pizzas;
   }
 
+  function changePassword($userId, $newPassword){
+        $sql = "UPDATE users SET userPassword = :userPassword WHERE userID = :userID";
+      $stmt = $this->conn->prepare($sql);
+        $stmt->bindparam(":userPassword", $newPassword);
+        $stmt->bindparam(":userID", $userId);
+        $stmt->execute();
+  }
+
 
   /******************************************************************************************
    * Pjesa per Kategori
@@ -395,6 +403,21 @@ class Session
     }
   }
 
+  function updateProfilePicture($userId, $image){
+    global $database;
+    $sql = "UPDATE users SET userPicture = :userPic WHERE userId = :user_id";
+
+    try {
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindParam('user_id', $userId);
+      $stmt->bindParam('userPic', $image);
+      $stmt->execute();
+    } catch (Exception $e) {
+      return $e->getMessage();
+    }
+
+  }
+
   function deleteCategory($categoryId)
   {
     global $database;
@@ -522,6 +545,23 @@ class Session
       return $e->getMessage();
     }
   }
+   function editUserInfo($userId, $fullName, $phone)
+  {
+    global $database;
+
+
+    try {
+      $sql = "UPDATE users SET Full_Name = :name, Phone = :phone WHERE userId = :userId";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindParam('userId', $userId);
+      $stmt->bindParam('name', $fullName);
+      $stmt->bindParam('phone', $phone);
+      $stmt->execute();
+    } catch (Exception $e) {
+      return $e->getMessage();
+    }
+  }
+
 
   function checkIfUserExists($fullName, $email, $phone, $role)
   {

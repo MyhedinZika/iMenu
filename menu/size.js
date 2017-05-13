@@ -73,7 +73,7 @@ $(document).on("click", "#btnsave", function () {
     var name = $("#txtname").val();
     var category = $("#categoryIdFK").val();
     var crud = $("#crudmethod").val();
-    var regex = /^[a-zA-Z ]*$/;
+     var regex = /^[a-zA-Z -]*$/;
     if (name == '' || name == null) {
         swal("Warning", "Shkruani emertimin e size", "warning");
         $("#txtname").focus();
@@ -144,14 +144,15 @@ $(document).on("click", ".btnedit", function () {
                 $("#txtid").val(data.size_id);
                 $("#txtname").val(data.name);
                 // console.log(data.categoryIDFK);
-                $('#categoryIdFK').on('onChange', function() {
-    console.log(data.categoryIDFK);
-    $('#categoryIdFK').dropdown('set selected',data.categoryIDFK);
-});
-                // $('.ui.dropdown').dropdown('set selected', 0)
+//                 $('#categoryIdFK').on('onChange', function() {
+//     console.log(data.categoryIDFK);
+//     $('#categoryIdFK').dropdown('set selected',data.categoryIDFK);
+// });
+                // $('.ui.dropdown').dropdown('set selected', '0');
                  // $(".item").val(data.categoryIDFK);
                 // console.log($('#categoryIdFK').dropdown('set selected',data.categoryIDFK));
-                // $("#categoryIdFK").val(data.categoryIDFK);
+                //$("#categoryIdFK").dropdown('set selected','data.categoryIDFK');
+                $('#categoryIdFK').val(data.categoryIDFK);
                 $("#modalSize").modal('show');
                 $("#txtname").focus();
             },

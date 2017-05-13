@@ -28,6 +28,7 @@ if ($user->is_logged_in()) {
 </style>
 
 <header class="main-header">
+
     <nav class="navbar navbar-static-top">
         <div class="container">
             <div class="navbar-header">
@@ -121,19 +122,15 @@ if ($user->is_logged_in()) {
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                             <img src="user_images/<?=$userInfo['userPicture'] ?>" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
+
                             <span class="hidden-xs"> <?php echo $userInfo['Full_Name']; ?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
-                                <p>
-
-                                    <small>Member since Nov. 2012</small>
-                                </p>
+                                <img src="user_images/<?=$userInfo['userPicture'] ?>" class="img-circle" alt="User Image">
                             </li>
                             <!-- Menu Body -->
                             <!--     <li class="user-body">
@@ -152,9 +149,12 @@ if ($user->is_logged_in()) {
                                  </li>   -->
                             <!-- Menu Footer-->
                             <li class="user-footer">
-                                <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                 <div class="pull-left">
+                                    <a href="editUser.php" class="btn btn-default btn-flat">Profile</a>
                                 </div>
+                          <div class="pull-left">
+                         <a href="ChangePassword.php" class="btn btn-default btn-flat">Privacy</a>
+                          </div>
                                 <div class="pull-right">
                                     <a href="../pages/logout.php" class="btn btn-default btn-flat">Sign out</a>
                                 </div>
